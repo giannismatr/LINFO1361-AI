@@ -1,7 +1,4 @@
-"""
-Name of the author(s):
-- Louis Navarre <louis.navarre@uclouvain.be>
-"""
+
 import time
 import sys
 from search import *
@@ -12,8 +9,23 @@ from search import *
 #################
 class Rubik2D(Problem):
 
+    def __init__(self, initial, goal=None):
+        self.initial = initial
+        self.goal = goal
+
     def actions(self, state):
-        pass
+        ActionsList = []
+        (shape_x, shape_y) = state.shape
+        #passe par toutes les lignes
+        for i in range(0, shape_x):
+            for j in range(0, shape_y):
+                ActionsList.append((i, "down", j)) #Row #i Down #j
+        #passe par toutes les col
+        for i in range(0, shape_y):
+            for j in range(0, shape_x):
+                ActionsList.append((i, "right", j)) #Col #i Right #j
+        
+        return ActionsList
 
     def result(self, state, action):
         pass
