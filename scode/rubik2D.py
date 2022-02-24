@@ -37,10 +37,10 @@ class Rubik2D(Problem):
                     my_test_grid[action[0]][int(x)+action[2]]=state.grid[action[0]][int(x)]
                 else:
                     my_test_grid[action[0][0+pos-1]]=str(state.grid[action[0][x]])
-            else:
-                for y in state.grid[action[0]]:
-                    if (state.grid[action[0]].index(y)+action[2])<=state.shape[1]:
-                        pass
+        else:
+            for y in state.grid[action[0]]:
+                if (state.grid[action[0]].index(y)+action[2])<=state.shape[1]:
+                    pass
         return my_test_grid
 
     def goal_test(self, state):
