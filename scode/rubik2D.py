@@ -13,10 +13,35 @@ from search import *
 class Rubik2D(Problem):
 
     def actions(self, state):
-        pass
+        ActionsList = []
+        (shape_x,shape_y)=state.shape
+        #passe par toutes les lignes
+        for i in range(0, shape_x):
+            for j in range(0, shape_y):
+                ActionsList.append((i, "down", j)) #Row #i Down #j
+        #passe par toutes les col
+        for i in range(0, shape_y):
+            for j in range(0, shape_x):
+                ActionsList.append((i, "right", j)) #Col #i Right #j
+        
+        return ActionsList
 
     def result(self, state, action):
-        pass
+        my_test_grid=state.grid
+        matrix = []
+        if action[1]=="right":
+            
+            for x in state.grid[action[0]]:
+                pos=int(state.shape[0]-(int(x)+1))
+                if (state.grid[action[0]].index(x)+action[2])<=state.shape[0]:
+                    my_test_grid[action[0]][int(x)+action[2]]=state.grid[action[0]][int(x)]
+                else:
+                    my_test_grid[action[0][0+pos-1]]=str(state.grid[action[0][x]])
+            else:
+                for y in state.grid[action[0]]:
+                    if (state.grid[action[0]].index(y)+action[2])<=state.shape[1]:
+                        pass
+        return my_test_grid
 
     def goal_test(self, state):
         pass
